@@ -1,0 +1,22 @@
+* {
+  margin: 3;
+}
+
+body {
+  background: #282c34;
+}
+
+.App {
+  /* text-align: center; */
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  /* text-align: center and align-items: center, will give exactly the same results*/
+}
+
+h2 {
+  cursor: pointer;
+  padding: 0.3rem;
+}
