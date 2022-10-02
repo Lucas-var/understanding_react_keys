@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# What are React Keys?
+A “key” is a special string attribute you need to include when creating lists of elements in React. Keys are used in React to identify which items in the list are changed, updated, or deleted. In other words, we can say that keys are used to give an identity to the elements in the lists.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Why we shouldn’t use the index as keys? 
+The quick short answer comes down to identity, when we render a list of components, Reacts wants to make sure it knows what each of these elements are, if you restructure your array Reacts wants to make sure it knows which elements are new and which ones were there from the previous render, making sure it doesn’t give excessive renders.
 
-## Available Scripts
+To see what really happens when you use index as the key, use this code and go to Dev tools, if in Windows press F12, then go to Elements and expand the div where the numbers from 1 to 10 are. See photo below.
 
-In the project directory, you can run:
+![index_vs_id](https://user-images.githubusercontent.com/71724842/193476572-ac32cf31-136c-41d2-8710-32ba38de6943.jpg)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![react_key_1](https://user-images.githubusercontent.com/71724842/193476448-c7cabf36-5617-4c3a-a336-baca46334acc.jpg)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+As you click on a number and make it be deleted from the screen, pay attention on what happens to the element in the DOM dev tool, as you click on the number, it will affect the element and purple flash what changed … that indicates that the element went through another render cycle, with the key set as index, the entire div and its elements flashes purple.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Now using the React recommendation, using an ID as the key, only the div flashes and not its elements.
 
-### `npm run build`
+That’s is why we need a stable, unique key, regardless how many times it renders.
+If you delete number one for example, all the other elements within the array is going to shift up one position, which means that the item was previous in index one now it is going to be in index zero and all the other elements index will also change therefore changing their keys too so React will have to render again even though nothing actually changed.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### In short:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+a key should be:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+•	Unique - A key cannot be identical to that of a sibling component.
 
-### `npm run eject`
+•	Static - A key should not ever change between renders.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+In short, here's when you can safely use the index as key:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+•	The array is static and will never change.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+•	The array is never filtered (display a subset of the array).
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+•	The array is never reordered.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
